@@ -1,24 +1,25 @@
 import React from 'react';
+import './Textarea.css';
 
 interface InputProps {
-  label: string;
-  placeholder: string;
-  required?: boolean;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+label: string;
+placeholder: string;
+value: string;
+onChange: (value: string) => void;
+required?: boolean; 
 }
 
-const Input: React.FC<InputProps> = ({ label, placeholder, required, value, onChange }) => {
-  return (
+export const Input: React.FC<InputProps> = ({ label, placeholder, value, onChange }) => (
+(
     <div style={{ marginBottom: 16 }}>
       <label style={{ display: 'block', marginBottom: 4, fontFamily: "arial" }}>
-        {label} {required && '*'}
+        <label>{label}</label>
       </label>
       <input
         type="text"
         placeholder={placeholder}
         value={value}
-        onChange={onChange}
+        onChange={(e) => onChange(e.target.value)}
         style={{
           width: '96%',
           padding: 8,
@@ -27,7 +28,4 @@ const Input: React.FC<InputProps> = ({ label, placeholder, required, value, onCh
         }}
       />
     </div>
-  );
-};
-
-export default Input;
+  ));

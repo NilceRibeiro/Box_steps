@@ -1,21 +1,16 @@
+
 import React from 'react';
 
-interface BoxProps {
-  children: React.ReactNode;
-}
+export const Box: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 
-const Box: React.FC<BoxProps> = ({ children }) => {
-  return (
     <div style={{
       border: '1px solid #ccc',
       borderRadius: 8,
       padding: 24,
       width: 400,
+      height: 400,
       backgroundColor: '#ADD8E6'
     }}>
       {children}
     </div>
   );
-};
-
-export default Box;

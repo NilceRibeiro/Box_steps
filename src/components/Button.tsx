@@ -3,25 +3,25 @@ import React from 'react';
 interface ButtonProps {
   texto: string;
   onClick: () => void;
+  comBackground?: boolean;
+  fundo: string;
+  cor: string;
+  float: 'left' | 'right';
 }
 
-const Button: React.FC<ButtonProps> = ({ texto, onClick }) => {
-  return (
+export const Button: React.FC<ButtonProps> = ({ texto, onClick, comBackground = true, fundo, cor, float}) => (
     <button
       onClick={onClick}
       style={{
-        backgroundColor: '#6200ea',
-        color: '#fff',
+        backgroundColor: fundo,
+        color: cor,
         padding: '10px 16px',
         border: 'none',
         borderRadius: 4,
         cursor: 'pointer',
-        float: 'right'
-      }}
-    >
-      {texto}
-    </button>
-  );
-};
-
-export default Button;
+        float: float
+          }}
+  >
+    {texto}
+  </button>
+)
