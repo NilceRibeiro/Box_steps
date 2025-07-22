@@ -14,7 +14,7 @@ export const Steps: React.FC<StepsProps> = ({ steps, currentStep }) => (
   <div style={{ display: 'flex', alignItems: 'center' }}>
     {steps.map((step, index) => (
       <React.Fragment key={step.ordem}>
-        <div style={{ textAlign: 'center', flex: 1 }}>
+        <div style={{ textAlign: 'center', display: 'flex', padding: 10 }}>
           <div
             style={{
               backgroundColor: currentStep === step.ordem ? '#6200ea' : '#8B0000',
@@ -31,7 +31,7 @@ export const Steps: React.FC<StepsProps> = ({ steps, currentStep }) => (
           >
             {step.ordem}
           </div>
-          <div style={{ marginTop: 4, fontFamily: 'Comic Sans MS' }}>
+          <div style={{ marginTop: -4, fontFamily: 'Comic Sans MS', padding: 10, justifyContent: 'center', alignItems: 'center' }}>
             {step.nome}
           </div>
         </div>

@@ -15,6 +15,7 @@ const App: React.FC = () => {
     nomeempresa: '',
     nfuncionario: '',
     sobre: '',
+    projeto:'',
   });
 
   
@@ -22,22 +23,30 @@ const handleChange = (field: string) => (value: string) => {
   setFormData({ ...formData, [field]: value });
 };
 const [currentStep, setCurrentStep] = useState(1)
+const [save, setSave] = useState(false)
 
   const steps = [
     { nome: 'Contato', ordem: 1 },
     { nome: 'Empresa', ordem: 2 },
-    { nome: 'Projeto', ordem: 3 }
+    { nome: 'Projeto', ordem: 3 },
+  
   ];
 
 const handleNextStep = () => {
   if (currentStep < steps.length) {
     setCurrentStep(prev => prev +1)
   }
+   else if (currentStep === steps.length) {
+    setSave(true)
+  } 
 }
 const handlePreviuStep = () => {
-  if (currentStep < steps.length) {
-    setCurrentStep(prev => prev - 1)
+  if (currentStep === steps.length){
+    setSave(false)
   }
+  if (currentStep < steps.length + 1) {
+    setCurrentStep(prev => prev - 1)
+  }    
 }
 
 
@@ -67,18 +76,20 @@ const handlePreviuStep = () => {
           value={formData.email}
           onChange={handleChange('email')}
         />
-        <Button texto="CONTINUAR" onClick={handleNextStep} fundo='#6200ea' cor='white' float='right' /> </div>}
+        <br></br><br></br><br></br>
+        <div style={{marginTop: '13px'}}>
+        <Button texto="CONTINUAR" onClick={handleNextStep} fundo='#6200ea' cor='white' float='right' /> </div></div>}
         {currentStep === 2 && <div>
         <Input
           label="Nome da Empresa"
-          placeholder="Como prefere ser chamado (a)"
+          placeholder="Infome o nome da empresa"
           required
           value={formData.nomeempresa}
           onChange={handleChange('nomeempresa')}
         />
         <Input
           label="Número de Funcionários"
-          placeholder="Insira seu número de telefone"
+          placeholder="Insira o número de funcionários"
           value={formData.nfuncionario}
           onChange={handleChange('nfuncionario')}
         />
@@ -90,6 +101,19 @@ const handlePreviuStep = () => {
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <Button texto = 'Voltar' onClick={handlePreviuStep} fundo='white' cor='#6200ea' float='left' />
         <Button texto="CONTINUAR" onClick={handleNextStep} fundo='#6200ea' cor='white' float='right' />
+        </div>
+         <div style={{marginTop: '13px'}}>
+      </div></div>}
+        {currentStep === 3 && <div>
+          <Textarea 
+          label="Sobre seu Projeto"
+          placeholder="Descreva quais são os objetivos do projeto"
+          value = {formData.projeto}
+          onChange={handleChange('projeto')} />
+          <div style={{marginTop: '160px'}}></div>
+        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+          <Button texto = 'Voltar' onClick={handlePreviuStep} fundo='white' cor='#6200ea' float='left' />
+        <Button texto="ENVIAR" onClick={handleNextStep} fundo='#6200ea' cor='white' float='right' />
        </div> </div>}
       </Box>
     </div>

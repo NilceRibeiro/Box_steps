@@ -7,7 +7,7 @@ export const Box: React.FC<{ children: React.ReactNode }> = ({ children }) => (
       border: '1px solid #ccc',
       borderRadius: 8,
       padding: 24,
-      width: 400,
+      width: 435,
       height: 400,
       backgroundColor: '#ADD8E6'
     }}>
